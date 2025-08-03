@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://f4g2o7lglvia"]
+
+[ext_resource type="Script" path="res://World/apps.gd" id="1_vbgqv"]
+[ext_resource type="Texture2D" uid="uid://cg565qhuvtb3l" path="res://Logos/Gmail_Icon.png" id="2_q48u8"]
+
+[node name="Apps" type="TextureRect"]
+custom_minimum_size = Vector2(64, 64)
+tooltip_text = "HMail"
+mouse_filter = 0
+script = ExtResource("1_vbgqv")
+NAME = "HMail"
+LOGO = ExtResource("2_q48u8")
+ColorChose = Color(1, 1, 1, 0.588235)
+ColorOver = Color(1, 1, 1, 0.784314)

@@ -1,3 +1,451 @@
-[gd_scene format=3 uid="uid://bwj5y5f5w4njh"]
+[gd_scene load_steps=15 format=3 uid="uid://bwj5y5f5w4njh"]
+
+[ext_resource type="Texture2D" uid="uid://q4w8lgxte6s8" path="res://BigBackGround.jpg" id="1_oibn2"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_lfurr"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_4smkd"]
+[ext_resource type="Script" path="res://World/monitor.gd" id="4_vn4vi"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_y4076"]
+[ext_resource type="VideoStream" path="res://Old-90s-PC-boot-sequence-_4K_.ogv" id="4_yw5vw"]
+[ext_resource type="Script" path="res://World/window_node.gd" id="5_se21v"]
+[ext_resource type="PackedScene" uid="uid://x23gxckw6tfv" path="res://World/v_blocks.tscn" id="5_tquo0"]
+[ext_resource type="Texture2D" uid="uid://bgyh2uj3ric8w" path="res://ButtonOff-removebg-preview.png" id="6_foxfy"]
+[ext_resource type="PackedScene" uid="uid://bwdqli4i0lysx" path="res://World/apps_block.tscn" id="6_u4i4k"]
+[ext_resource type="Script" path="res://World/button_computer.gd" id="7_rwysb"]
+[ext_resource type="Texture2D" uid="uid://dnyfgvjehl4fy" path="res://ButtonOn-removebg-preview.png" id="8_535r8"]
+
+[sub_resource type="Resource" id="Resource_xvkam"]
+script = ExtResource("4_y4076")
+duration = 0.65
+transition = 2
+ease = 0
+
+[sub_resource type="Resource" id="Resource_y5epg"]
+script = ExtResource("4_y4076")
+duration = 0.5
+transition = 4
+ease = 2
 
 [node name="Scene 1" type="Node2D"]
+
+[node name="NormalCamera" type="Node2D" parent="."]
+position = Vector2(0, 11)
+script = ExtResource("3_4smkd")
+priority = 1
+zoom = Vector2(1, 0.97)
+tween_resource = SubResource("Resource_xvkam")
+
+[node name="FocusCamera" type="Node2D" parent="."]
+script = ExtResource("3_4smkd")
+zoom = Vector2(1.6, 1.5)
+tween_resource = SubResource("Resource_y5epg")
+
+[node name="Monitor" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(-1, 71)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("1_oibn2")
+script = ExtResource("4_vn4vi")
+
+[node name="Screen" type="Control" parent="Monitor"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -531.0
+offset_top = -544.0
+offset_right = 531.0
+offset_bottom = 277.0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 1
+
+[node name="ScreenOn" type="Control" parent="Monitor/Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Monitor/Screen/ScreenOn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="WindowNode" type="Control" parent="Monitor/Screen/ScreenOn/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+tooltip_text = "Que es esto
+"
+mouse_filter = 1
+script = ExtResource("5_se21v")
+
+[node name="Window" type="ColorRect" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.188235, 0.32549, 0.541176, 1)
+
+[node name="HBlocks" type="HBoxContainer" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="VBlocks" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode/HBlocks" instance=ExtResource("5_tquo0")]
+layout_mode = 2
+
+[node name="AppsBlock" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode/HBlocks/VBlocks" instance=ExtResource("6_u4i4k")]
+layout_mode = 2
+
+[node name="AppsBlock2" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode/HBlocks/VBlocks" instance=ExtResource("6_u4i4k")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBlocks2" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode/HBlocks" instance=ExtResource("5_tquo0")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AppsBlock" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode/HBlocks/VBlocks2" instance=ExtResource("6_u4i4k")]
+layout_mode = 2
+
+[node name="AppsBlock2" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode/HBlocks/VBlocks2" instance=ExtResource("6_u4i4k")]
+layout_mode = 2
+
+[node name="FooterNode" type="Control" parent="Monitor/Screen/ScreenOn/VBoxContainer"]
+custom_minimum_size = Vector2(0, 12.18)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Footer" type="ColorRect" parent="Monitor/Screen/ScreenOn/VBoxContainer/FooterNode"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.627451, 0.6, 0.552941, 1)
+
+[node name="ScreenOff" type="Control" parent="Monitor/Screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Screen" type="ColorRect" parent="Monitor/Screen/ScreenOff"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Gordes" type="Control" parent="Monitor"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect6" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -552.0
+offset_top = 275.0
+offset_right = 554.0
+offset_bottom = 294.0
+mouse_filter = 2
+color = Color(0.690196, 0.580392, 0.392157, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -669.0
+offset_top = -681.0
+offset_right = 669.0
+offset_bottom = -577.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -669.0
+offset_top = -554.0
+offset_right = -577.0
+offset_bottom = 456.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -669.0
+offset_top = -577.0
+offset_right = -552.0
+offset_bottom = -554.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -577.0
+offset_top = 294.0
+offset_right = -554.0
+offset_bottom = 456.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -554.0
+offset_top = 315.0
+offset_right = 415.0
+offset_bottom = 456.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Monitor/Gordes/ColorRect11"]
+layout_mode = 0
+offset_top = -21.0
+offset_right = 1108.0
+mouse_filter = 2
+color = Color(0.854902, 0.764706, 0.568627, 1)
+
+[node name="ColorRect13" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 419.0
+offset_right = 437.0
+offset_bottom = 456.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect12" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 315.0
+offset_right = 438.0
+offset_bottom = 368.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect14" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 360.0
+offset_right = 498.0
+offset_bottom = 425.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect15" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 315.0
+offset_right = 669.0
+offset_bottom = 350.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect16" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 440.0
+offset_right = 669.0
+offset_bottom = 457.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect18" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 419.0
+offset_right = 519.0
+offset_bottom = 440.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect19" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 496.154
+offset_top = 346.154
+offset_right = 519.154
+offset_bottom = 367.154
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect17" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 323.0
+offset_right = 669.0
+offset_bottom = 456.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect20" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 577.0
+offset_top = -577.0
+offset_right = 669.0
+offset_bottom = 316.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect21" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 552.0
+offset_top = -581.0
+offset_right = 577.0
+offset_bottom = -554.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect22" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 554.0
+offset_top = 294.0
+offset_right = 577.0
+offset_bottom = 315.0
+mouse_filter = 2
+color = Color(0.717647, 0.6, 0.396078, 1)
+
+[node name="ColorRect23" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 436.538
+offset_top = 346.154
+offset_right = 495.538
+offset_bottom = 363.154
+mouse_filter = 2
+color = Color(0.388235, 0.32549, 0.227451, 1)
+
+[node name="ColorRect24" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 436.538
+offset_top = 423.077
+offset_right = 497.538
+offset_bottom = 444.077
+mouse_filter = 2
+color = Color(0.388235, 0.32549, 0.227451, 1)
+
+[node name="ColorRect25" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 415.385
+offset_top = 367.308
+offset_right = 437.385
+offset_bottom = 419.308
+mouse_filter = 2
+color = Color(0.388235, 0.32549, 0.227451, 1)
+
+[node name="ColorRect26" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 367.0
+offset_right = 519.0
+offset_bottom = 419.0
+mouse_filter = 2
+color = Color(0.388235, 0.32549, 0.227451, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = 531.0
+offset_top = -544.0
+offset_right = 552.0
+offset_bottom = 275.0
+mouse_filter = 2
+color = Color(0.439216, 0.372549, 0.262745, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Monitor/Gordes/ColorRect4"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = -10.0
+offset_right = 46.0
+offset_bottom = 838.0
+mouse_filter = 2
+color = Color(0.6, 0.494118, 0.32549, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -552.0
+offset_top = -577.0
+offset_right = 552.0
+offset_bottom = -544.0
+mouse_filter = 2
+color = Color(0.466667, 0.4, 0.290196, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -552.0
+offset_top = -544.0
+offset_right = -531.0
+offset_bottom = 275.0
+mouse_filter = 2
+color = Color(0.435294, 0.360784, 0.235294, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Monitor/Gordes"]
+layout_mode = 0
+offset_left = -577.0
+offset_top = -554.0
+offset_right = -552.0
+offset_bottom = 294.0
+mouse_filter = 2
+color = Color(0.6, 0.482353, 0.333333, 1)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Monitor"]
+visible = false
+z_index = 8
+offset_left = -532.692
+offset_top = -542.308
+offset_right = 747.308
+offset_bottom = 272.692
+scale = Vector2(0.83, 1.005)
+mouse_filter = 2
+stream = ExtResource("4_yw5vw")
+expand = true
+buffering_msec = 10
+
+[node name="ButtonComputer" type="Button" parent="Monitor"]
+offset_left = 438.462
+offset_top = 365.385
+offset_right = 746.462
+offset_bottom = 673.385
+scale = Vector2(0.185, 0.185)
+icon = ExtResource("6_foxfy")
+script = ExtResource("7_rwysb")
+imageOn = ExtResource("8_535r8")
+imageOff = ExtResource("6_foxfy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 11)
+zoom = Vector2(1, 0.97)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_lfurr")
+
+[connection signal="pressed" from="Monitor/ButtonComputer" to="Monitor/ButtonComputer" method="_on_pressed"]

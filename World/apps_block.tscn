@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwdqli4i0lysx"]
+
+[ext_resource type="Script" path="res://World/apps_block.gd" id="1_ngw3t"]
+
+[node name="AppsBlock" type="ColorRect"]
+custom_minimum_size = Vector2(64, 64)
+mouse_filter = 1
+color = Color(1, 1, 1, 0.0431373)
+script = ExtResource("1_ngw3t")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

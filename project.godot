@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="DevFactory"
+run/main_scene="res://World/scene_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,11 +20,18 @@ config/icon="res://icon.svg"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 QuestManager="*res://addons/quest_manager/QuestManager.gd"
+AppsManager="*res://Singletons/AppsManager.gd"
 
 [dialogic]
 
 directories/dch_directory={}
 directories/dtl_directory={}
+
+[display]
+
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 
 [editor]
 

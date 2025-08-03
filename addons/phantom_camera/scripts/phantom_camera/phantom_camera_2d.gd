@@ -3,6 +3,7 @@
 class_name PhantomCamera2D
 extends Node2D
 
+
 ## Controls a scene's [Camera2D] and applies logic to it.
 ##
 ## The scene's [param Camera2D] will follow the position of the

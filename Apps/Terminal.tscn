@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt27a4e5swyev"]
+
+[ext_resource type="Script" path="res://World/apps.gd" id="1_fkiyl"]
+[ext_resource type="Texture2D" uid="uid://dpeclm8t23rar" path="res://Logos/Terminal322.png" id="2_6yji6"]
+
+[node name="Terminal" type="TextureRect"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("2_6yji6")
+script = ExtResource("1_fkiyl")
+NAME = "Terminal"
+LOGO = ExtResource("2_6yji6")
+ColorChose = Color(1, 1, 1, 0.588235)
+ColorOver = Color(1, 1, 1, 0.784314)
