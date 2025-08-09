@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjr7o43udbvca"]
+
+[ext_resource type="Script" path="res://NewSystem/app.gd" id="1_0dmcn"]
+[ext_resource type="PackedScene" uid="uid://dptmo66u5wqnr" path="res://NewSystem/image_component.tscn" id="1_cpqqg"]
+[ext_resource type="PackedScene" uid="uid://by8xcf5svx63v" path="res://NewSystem/Components/drag_component.tscn" id="1_togto"]
+[ext_resource type="PackedScene" uid="uid://cf6qcsnmqrs4v" path="res://NewSystem/Components/button_component.tscn" id="2_rawjk"]
+
+[node name="APP" type="ColorRect"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 10
+script = ExtResource("1_0dmcn")
+
+[node name="ImageComponent" parent="." instance=ExtResource("1_cpqqg")]
+layout_mode = 1
+
+[node name="DragComponent" parent="." node_paths=PackedStringArray("AppOwner", "WhoShouldIDrag") instance=ExtResource("1_togto")]
+layout_mode = 1
+AppOwner = NodePath("..")
+WhoShouldIDrag = NodePath("..")
+QuitAfterReleas = true
+
+[node name="ButtonComponent" parent="DragComponent" node_paths=PackedStringArray("AppOwner") instance=ExtResource("2_rawjk")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+AppOwner = NodePath("../..")
+DobleClickToDO = true
+
+[node name="ImageComponent2" parent="DragComponent/ButtonComponent" instance=ExtResource("1_cpqqg")]
+layout_mode = 1

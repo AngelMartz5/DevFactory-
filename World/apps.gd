@@ -9,7 +9,11 @@ func _ready():
 	self.texture = LOGO
 	self.mouse_entered.connect(_mouseOnAppEntered)
 	self.mouse_exited.connect(_mouseOnAppExited)
+	self.focus_entered.connect(_focusEntered)
+	self.focus_exited.connect(_focusExited)
+	self.focus_mode = Control.FOCUS_ALL
 	
+
 
 func _VisibilityChange():
 	if(self.visible):
@@ -20,9 +24,18 @@ func _VisibilityChange():
 func _mouseOnAppEntered():
 	self.modulate = ColorOver
 	AppsManager.OnMouseEntered = self
-	Input.set_default_cursor_shape(Input.CURSOR_BUSY)
+	
 
 func _mouseOnAppExited():
-	self.modulate = Color(1, 1, 1, 1)
+	if !self.modulate == ColorChose:
+		
+		self.modulate = Color(1, 1, 1, 1)
 	AppsManager.OnMouseExited = self
-	Input.set_default_cursor_shape(Input.CURSOR_BUSY)
+
+func _focusEntered():
+	self.modulate = ColorChose
+	print("Este: ", str(self), " Con nombre de : ", str(NAME), " Se puso en Focus")
+
+func _focusExited():
+	self.modulate = Color(1, 1, 1, 1)
+	print("Este: ", str(self), " Con nombre de : ", str(NAME), " Se salio del puso en Focus")

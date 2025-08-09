@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://kdxuj55w7lp8"]
+
+[ext_resource type="Texture2D" uid="uid://cg565qhuvtb3l" path="res://Logos/Gmail_Icon.png" id="1_6hvlu"]
+[ext_resource type="Script" path="res://World/application.gd" id="1_51op6"]
+[ext_resource type="Texture2D" uid="uid://di0s8gjbmqdjj" path="res://ICONS/icons8-minimizar-50.png" id="2_a8b1p"]
+[ext_resource type="Texture2D" uid="uid://b37crqxufs5t4" path="res://ICONS/icons8-close-50.png" id="3_bcsia"]
+[ext_resource type="Script" path="res://World/GUI.gd" id="3_tkiai"]
+[ext_resource type="Script" path="res://World/GUIandIcons.gd" id="3_vwyvo"]
+[ext_resource type="Texture2D" uid="uid://b84yq5h4uk1yq" path="res://ICONS/icons8-expand-50.png" id="4_m0kom"]
+
+[node name="APPLICATION" type="VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -2.0
+offset_right = 20.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_51op6")
+LOGO = ExtResource("1_6hvlu")
+
+[node name="HEAD" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("3_vwyvo")
+isAPage = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HEAD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LOGOPARTCOL" type="ColorRect" parent="HEAD/HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LOGOPART" type="TextureRect" parent="HEAD/HBoxContainer/LOGOPARTCOL"]
+z_index = 2
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+offset_right = 3.0
+offset_bottom = 4.0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="EXTRAS" type="HBoxContainer" parent="HEAD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI" type="HBoxContainer" parent="HEAD/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="MINCOL" type="ColorRect" parent="HEAD/HBoxContainer/GUI"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+color = Color(0.415686, 0.415686, 0.415686, 0.176471)
+script = ExtResource("3_tkiai")
+COlorOverThis = Color(0, 0, 0, 0.294118)
+ColorPRESSED = Color(1, 1, 1, 0.470588)
+OPTIONSGUIBUTTON = 1
+
+[node name="MIN" type="TextureRect" parent="HEAD/HBoxContainer/GUI/MINCOL"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+offset_right = 3.0
+offset_bottom = 4.0
+texture = ExtResource("2_a8b1p")
+expand_mode = 1
+
+[node name="MAXCOL" type="ColorRect" parent="HEAD/HBoxContainer/GUI"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+color = Color(0.415686, 0.415686, 0.415686, 0.176471)
+script = ExtResource("3_tkiai")
+COlorOverThis = Color(0, 0, 0, 0.294118)
+ColorPRESSED = Color(1, 1, 1, 0.470588)
+OPTIONSGUIBUTTON = 2
+
+[node name="MAX" type="TextureRect" parent="HEAD/HBoxContainer/GUI/MAXCOL"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+offset_right = 4.0
+offset_bottom = 4.0
+mouse_filter = 2
+texture = ExtResource("4_m0kom")
+expand_mode = 1
+
+[node name="CLOSECOL" type="ColorRect" parent="HEAD/HBoxContainer/GUI"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+color = Color(0.415686, 0.415686, 0.415686, 0.176471)
+script = ExtResource("3_tkiai")
+COlorOverThis = Color(1, 0, 0, 0.588235)
+ColorPRESSED = Color(0.905882, 0, 0, 0.392157)
+
+[node name="CLOSE" type="TextureRect" parent="HEAD/HBoxContainer/GUI/CLOSECOL"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+offset_right = 4.0
+offset_bottom = 4.0
+texture = ExtResource("3_bcsia")
+expand_mode = 1
+
+[node name="ALL" type="ColorRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(24, 22)
+zoom = Vector2(6, 6)

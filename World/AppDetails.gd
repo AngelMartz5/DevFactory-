@@ -1,6 +1,7 @@
 extends TextureRect
 class_name AppDetails
 
+
 @export var NAME : String = ""
 @export var LOGO : Texture2D
 @export var ColorChose : Color
@@ -16,6 +17,7 @@ func _setParent(PARENTNEW: APPSBLOCK):
 	Parent = PARENTNEW
 	if PARENTNEW != null:
 		print("ENTRO: ",str(self), " Y SU NUEVO PADRE ES: ", str(PARENTNEW))
+		self.z_index = AppsManager.BASEZINDEX
 		var current_parent = get_parent()
 		if current_parent:
 			current_parent.remove_child(self)

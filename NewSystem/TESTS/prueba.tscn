@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://btxofupgjpc1s"]
+
+[ext_resource type="PackedScene" uid="uid://cjr7o43udbvca" path="res://NewSystem/app.tscn" id="1_301v5"]
+[ext_resource type="PackedScene" uid="uid://dvt3s2bit315f" path="res://NewSystem/container.tscn" id="2_uxuta"]
+
+[node name="PRUEBA" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="APP" parent="." instance=ExtResource("1_301v5")]
+z_index = 2
+layout_mode = 1
+
+[node name="ButtonComponent" parent="APP/DragComponent" index="0"]
+mouse_default_cursor_shape = 13
+
+[node name="APP2" parent="." instance=ExtResource("1_301v5")]
+layout_mode = 1
+offset_top = -96.0
+offset_bottom = -56.0
+color = Color(0.685089, 1.20327e-06, 0.387228, 1)
+
+[node name="Container" parent="." instance=ExtResource("2_uxuta")]
+layout_mode = 1
+offset_left = -254.0
+offset_right = -214.0
+mouse_filter = 1
+
+[node name="Container3" parent="." instance=ExtResource("2_uxuta")]
+layout_mode = 1
+offset_left = -287.0
+offset_right = -247.0
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+Contain = 1
+
+[node name="Container2" parent="." instance=ExtResource("2_uxuta")]
+layout_mode = 1
+offset_left = 198.0
+offset_right = 238.0
+mouse_filter = 1
+color = Color(0.617294, 0, 0.174538, 1)
+
+[editable path="APP"]
+[editable path="APP2"]

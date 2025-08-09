@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwj5y5f5w4njh"]
+[gd_scene load_steps=21 format=3 uid="uid://bwj5y5f5w4njh"]
 
 [ext_resource type="Texture2D" uid="uid://q4w8lgxte6s8" path="res://BigBackGround.jpg" id="1_oibn2"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_lfurr"]
@@ -8,10 +8,13 @@
 [ext_resource type="VideoStream" path="res://Old-90s-PC-boot-sequence-_4K_.ogv" id="4_yw5vw"]
 [ext_resource type="Script" path="res://World/window_node.gd" id="5_se21v"]
 [ext_resource type="PackedScene" uid="uid://x23gxckw6tfv" path="res://World/v_blocks.tscn" id="5_tquo0"]
+[ext_resource type="Script" path="res://World/pages_manger.gd" id="6_00mum"]
 [ext_resource type="Texture2D" uid="uid://bgyh2uj3ric8w" path="res://ButtonOff-removebg-preview.png" id="6_foxfy"]
 [ext_resource type="PackedScene" uid="uid://bwdqli4i0lysx" path="res://World/apps_block.tscn" id="6_u4i4k"]
 [ext_resource type="Script" path="res://World/button_computer.gd" id="7_rwysb"]
 [ext_resource type="Texture2D" uid="uid://dnyfgvjehl4fy" path="res://ButtonOn-removebg-preview.png" id="8_535r8"]
+[ext_resource type="Script" path="res://World/footer_node.gd" id="9_nkx6t"]
+[ext_resource type="FontFile" uid="uid://brx6d55luol13" path="res://Fonts/FONTS/Kumar_One/KumarOne-Regular.ttf" id="10_dw2t4"]
 
 [sub_resource type="Resource" id="Resource_xvkam"]
 script = ExtResource("4_y4076")
@@ -24,6 +27,15 @@ script = ExtResource("4_y4076")
 duration = 0.5
 transition = 4
 ease = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0fv3"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs5ct"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 0.466667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c5iw"]
+bg_color = Color(0.584314, 0.584314, 0.584314, 0)
 
 [node name="Scene 1" type="Node2D"]
 
@@ -86,6 +98,13 @@ tooltip_text = "Que es esto
 mouse_filter = 1
 script = ExtResource("5_se21v")
 
+[node name="PagesManger" type="Control" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("6_00mum")
+
 [node name="Window" type="ColorRect" parent="Monitor/Screen/ScreenOn/VBoxContainer/WindowNode"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -132,9 +151,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="FooterNode" type="Control" parent="Monitor/Screen/ScreenOn/VBoxContainer"]
-custom_minimum_size = Vector2(0, 12.18)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 mouse_filter = 1
+script = ExtResource("9_nkx6t")
 
 [node name="Footer" type="ColorRect" parent="Monitor/Screen/ScreenOn/VBoxContainer/FooterNode"]
 unique_name_in_owner = true
@@ -146,6 +166,48 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.627451, 0.6, 0.552941, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Monitor/Screen/ScreenOn/VBoxContainer/FooterNode/Footer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeFoot" type="ColorRect" parent="Monitor/Screen/ScreenOn/VBoxContainer/FooterNode/Footer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+color = Color(1, 1, 1, 0)
+
+[node name="TextEdit" type="TextEdit" parent="Monitor/Screen/ScreenOn/VBoxContainer/FooterNode/Footer/HBoxContainer/TimeFoot"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_colors/selection_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 18
+theme_override_fonts/font = ExtResource("10_dw2t4")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_a0fv3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cs5ct")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_8c5iw")
+placeholder_text = "31 / 12 / 1970"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="ScreenOff" type="Control" parent="Monitor/Screen"]
 visible = false

@@ -7,6 +7,7 @@
 custom_minimum_size = Vector2(64, 64)
 tooltip_text = "HMail"
 mouse_filter = 0
+mouse_default_cursor_shape = 2
 script = ExtResource("1_vbgqv")
 NAME = "HMail"
 LOGO = ExtResource("2_q48u8")

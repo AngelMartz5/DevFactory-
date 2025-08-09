@@ -40,18 +40,20 @@ func _ready():
 	screen_on.mouse_entered.connect(_mouseEntered)
 	screen_on.mouse_exited.connect(_mouseExited)
 	self.AllWasCreated.connect(AppsManager._allWasCreated)
+	_FORMATEAR()
+	
 
 func Encendida(turnOn : bool):
 	if(turnOn):
-		
-		video_stream_player.play()
+		add_child(screen)
 		#Temporal Quitar despues de experimentos
+		#video_stream_player.play()
 		animationFinished()
 	else:
 		if video_stream_player.is_playing():
 			video_stream_player.stop()
 			
-		_eliminarTodo()
+		remove_child(screen)
 
 func animationFinished():
 	index = 0
@@ -72,9 +74,8 @@ func animationFinished():
 	var cols = int(width_screen / distance)
 	var rows = int(height_screen / distance)
 
-	print("Celdas:", cols, "x", rows, " Altura: ", height_screen, " Horizontal: ", width_screen)
 	
-	_eliminarTodo()
+	_FORMATEAR()
 	BLOCKS.clear()
 	var numbers : int = 0
 	for X in range(cols):
@@ -102,10 +103,6 @@ func animationFinished():
 			# Si es la última fila, que se expanda verticalmente
 			if y == rows-1:
 				block.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	
-	
-	
-
 
 
 func _createApps(fatehr : ColorRect):
@@ -120,7 +117,7 @@ func _createApps(fatehr : ColorRect):
 			AppsManager.appsNeeded.erase(App)
 			return
 
-func _eliminarTodo():
+func _FORMATEAR():
 	# Limpiar contenido anterior si ya existía
 	var Childrens = h_blocks.get_children()
 	var howmanyChildren = Childrens.size()
@@ -129,10 +126,11 @@ func _eliminarTodo():
 	if howmanyChildren != 0:
 		for x in Childrens:
 			AllWasCreated.emit(false, x)
+			x.mouse_entered.disconnect(_mouseEntered)
+			x.mouse_exited.disconnect(_mouseExited)
 			x.queue_free()
 
 func _mouseEntered():
-	print("mouese entered")
 	normal_camera.priority = 0
 	focus_camera.priority = 100
 func _mouseExited():
